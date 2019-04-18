@@ -1,10 +1,10 @@
-from cv2 import GaussianBlur,threshold,resize,imread
+from cv2 import GaussianBlur, threshold, resize, imread
 from numpy import zeros,array
 from skimage.feature import hog
 from skimage.morphology import skeletonize
 from skimage.util import invert
 from sklearn.externals import joblib
-import urlib.request
+import urllib.request
 
 def create_exp():
     Lreg_lb = joblib.load("digits_cls.pkl")
@@ -71,9 +71,9 @@ def create_exp():
             hogImg=hog(converted,orientations=9,pixels_per_cell=(4,4),cells_per_block=(1,1),visualise=False)
             pred=Lreg_lb.predict(np.array(hogImg,'float64'))
             exp.append(pred[0])
-		#change starts here
+        #change starts here
             seg_count = seg_count + 1
-	    if exp[seg_count-1]=='\' || exp[seg_count-1]=='-' || exp[seg_count-1]=='*' || exp[seg_count-1]=='+':
-	    	exp.pop()
-		#change ends here
+        if exp[seg_count-1]=="\ " or exp[seg_count-1]=='-' or exp[seg_count-1]=='*' or exp[seg_count-1]=='+':
+            exp.pop()
+        #change ends here
     return exp

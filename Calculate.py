@@ -1,8 +1,4 @@
-from pythonds.basic.stack import Stack 
-from Project3 import operators, Solver
-from Project4 import simplifier
-
-
+from pythonds.basic.stack import Stack
 
 precedence_dict = {'-':2, '+':2, '*':1, '/':1}
 numbers = [str(i) for i in range(100000)]
